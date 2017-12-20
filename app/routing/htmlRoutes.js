@@ -6,15 +6,16 @@ module.exports = function(app) {
   //html get requests
   //below code handles different pathways for each page
   //in each of the below cases the user is shown an html content.
-  app.get("/tables", function(req, res){
-      res.sendFile(path.join(_dirname,"../public/tables.html"));
+  //home page path function
+  app.get("/", function(req, res){
+      res.sendFile(path.join(__dirname ,"../public/home.html"));
   });
   //each app.get is to send to another path
-  app.get("/tables", function(req, res) {
-      res.sendFile(path.join(_dirname,"../public/tables.html"));
+  app.get("/survey/", function(req, res) {
+      res.sendFile(path.join(__dirname,"../public/survey.html"));
   });
-  //different path
-  app.get("/tables", function(req, res) {
-      res.sendFile(path.join(_dirname, "../public/tables.html"));
+  // If no matching route is found default to home
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 };
