@@ -7,13 +7,16 @@ var apiRoutes = require("./app/routing/apiRoutes.js");
 
 //set up Express
 var app = express();
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 
 //set up the express app to handle data parsing
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
+//body-parser is middleware, using it to manipulate the date
+htmlRoutes(app);
+apiRoutes(app);
 
 //listener
 app.listen(PORT, function(){
-  console.log("Server listening on port: " + PORT);
+    console.log('LISTENING ON PORT: ' + PORT);
 });
