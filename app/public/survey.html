@@ -18,7 +18,7 @@
       <hr>
 
       <div>
-          <a id="home-page" href="/add"><button type="button" class="btn btn-danger btn-lg "><span class="glyphicon glyphicon-home"></span> Home</button></a>
+          <a id="home-page" href="/"><button type="button" class="btn btn-danger btn-lg "><span class="glyphicon glyphicon-home"></span> Home</button></a>
       </div>
     </div>
 
@@ -147,7 +147,7 @@
           </div>
 <!--submit button  -->
 
-          <button class="btn btn-primary btn-lg submit" type="submit" value="Submit" data-target="#mymodal"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+          <button class="btn btn-primary btn-lg submit" type="submit" value="Submit" id="submit" data-target="#mymodal"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 
         </div>
       </div>
@@ -161,7 +161,38 @@
   </footer>
 
 
-  <script type="text/javascript"></script>
+  <script type="text/javascript">
+    $("#submit").on("click", function(event){
+      var name = $("#friends_name").val().trim();
+      var photo = $("#friends_photo").val().trim();
+      var question1 = $("#question1").val().trim();
+      // var question2 = $("#question2").val().trim();
+      // var question3 = $("#question3").val().trim();
+      // var question4 = $("#question4").val().trim();
+      // var question5 = $("#question5").val().trim();
+      // var question6 = $("#question6").val().trim();
+      // var question7 = $("#question7").val().trim();
+      // var question8 = $("#question8").val().trim();
+      // var question9 = $("#question9").val().trim();
+      // var question10 = $("#question10").val().trim();
+      var answers = [];
+      for(var i = 1; i <= 10; i++) {
+        $("#question" + i).val().trim();
+        answers.push($("#question" + i).val().trim());
+      }
+      var userInfo = {
+        name: name,
+        photo: photo,
+        scores: answers
+      }
+      console.log(userInfo)
+      $.post("/api/friends", userInfo, function(data){
+        alert("goodjob");
+      });
+    });
+
+
+  </script>
 
 </body>
 </html>
